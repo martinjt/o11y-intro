@@ -23,7 +23,7 @@ public class HomeController : Controller
         // CUSTOM ATTRIBUTES
         Activity.Current?.SetTag("parameter.index", index);
 
-        if (index == 0 | index == 1)
+        if (index == 0 || index == 1)
             return 0;
         if (index == 2)
             return 1;
@@ -40,10 +40,6 @@ public class HomeController : Controller
         return fibonacciNumber;
     }
 
-    private async Task<int> GetNext(int iv)
-    {
-        var resp = await _httpClient.GetAsync($"http://{HttpContext.Request.Host}/calculate?index={iv}");
-        resp.EnsureSuccessStatusCode();
-        return int.Parse(await resp.Content.ReadAsStringAsync());
-    }
+    private async Task<int> GetNext(int iv) => 
+        int.Parse(await _httpClient.GetStringAsync($"http://{HttpContext.Request.Host}/calculate?index={iv}"));
 }
