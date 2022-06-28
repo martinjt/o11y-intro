@@ -32,7 +32,7 @@ public class HomeController : Controller
         var resTwo = await GetNext(index - 2);
 
         // CHILD SPAN (2 sections of code to uncomment, 2 lines total)
-        using var span = Activity.Current?.Source.StartActivity("calculation");
+        using var span = ActivityHelper.Fibonacci.StartActivity("calculation");
 
         var fibonacciNumber = resOne + resTwo;
         span?.SetTag("result", fibonacciNumber);

@@ -24,3 +24,8 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+class ActivityHelper
+{
+    public static ActivitySource Fibonacci = new ActivitySource("Fibonacci");
+}
